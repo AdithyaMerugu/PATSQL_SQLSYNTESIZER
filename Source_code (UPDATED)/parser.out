@@ -1,0 +1,264 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    ASC
+    AVG
+    CONCATCOMMA
+    CONCATSLASH
+    CONCATSPACE
+    CONST
+    COUNT
+    DESC
+    EQ
+    GT
+    GTE
+    ISNOTNULL
+    ISNULL
+    LT
+    LTE
+    MAX
+    MIN
+    NEQ
+    OR
+    RANK
+    SUM
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> TABLE
+Rule 2     expression -> ORDER
+Rule 3     expression -> DISTINCT
+Rule 4     expression -> PROJECT
+Rule 5     expression -> SELECT
+Rule 6     expression -> GROUP
+Rule 7     expression -> WINDOW
+Rule 8     expression -> JOIN
+Rule 9     expression -> LEFTJOIN
+Rule 10    expression -> SELECT LPAREN table RPAREN LPAREN column_list RPAREN
+Rule 11    table -> ID
+Rule 12    column_list -> ID COMMA ID
+Rule 13    column_list -> ID
+
+Terminals, with rules where they appear
+
+AND                  : 
+ASC                  : 
+AVG                  : 
+COMMA                : 12
+CONCATCOMMA          : 
+CONCATSLASH          : 
+CONCATSPACE          : 
+CONST                : 
+COUNT                : 
+DESC                 : 
+DISTINCT             : 3
+EQ                   : 
+GROUP                : 6
+GT                   : 
+GTE                  : 
+ID                   : 11 12 12 13
+ISNOTNULL            : 
+ISNULL               : 
+JOIN                 : 8
+LEFTJOIN             : 9
+LPAREN               : 10 10
+LT                   : 
+LTE                  : 
+MAX                  : 
+MIN                  : 
+NEQ                  : 
+OR                   : 
+ORDER                : 2
+PROJECT              : 4
+RANK                 : 
+RPAREN               : 10 10
+SELECT               : 5 10
+SUM                  : 
+TABLE                : 1
+WINDOW               : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+column_list          : 10
+expression           : 0
+table                : 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . TABLE
+    (2) expression -> . ORDER
+    (3) expression -> . DISTINCT
+    (4) expression -> . PROJECT
+    (5) expression -> . SELECT
+    (6) expression -> . GROUP
+    (7) expression -> . WINDOW
+    (8) expression -> . JOIN
+    (9) expression -> . LEFTJOIN
+    (10) expression -> . SELECT LPAREN table RPAREN LPAREN column_list RPAREN
+
+    TABLE           shift and go to state 2
+    ORDER           shift and go to state 3
+    DISTINCT        shift and go to state 4
+    PROJECT         shift and go to state 5
+    SELECT          shift and go to state 6
+    GROUP           shift and go to state 7
+    WINDOW          shift and go to state 8
+    JOIN            shift and go to state 9
+    LEFTJOIN        shift and go to state 10
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> TABLE .
+
+    $end            reduce using rule 1 (expression -> TABLE .)
+
+
+state 3
+
+    (2) expression -> ORDER .
+
+    $end            reduce using rule 2 (expression -> ORDER .)
+
+
+state 4
+
+    (3) expression -> DISTINCT .
+
+    $end            reduce using rule 3 (expression -> DISTINCT .)
+
+
+state 5
+
+    (4) expression -> PROJECT .
+
+    $end            reduce using rule 4 (expression -> PROJECT .)
+
+
+state 6
+
+    (5) expression -> SELECT .
+    (10) expression -> SELECT . LPAREN table RPAREN LPAREN column_list RPAREN
+
+    $end            reduce using rule 5 (expression -> SELECT .)
+    LPAREN          shift and go to state 11
+
+
+state 7
+
+    (6) expression -> GROUP .
+
+    $end            reduce using rule 6 (expression -> GROUP .)
+
+
+state 8
+
+    (7) expression -> WINDOW .
+
+    $end            reduce using rule 7 (expression -> WINDOW .)
+
+
+state 9
+
+    (8) expression -> JOIN .
+
+    $end            reduce using rule 8 (expression -> JOIN .)
+
+
+state 10
+
+    (9) expression -> LEFTJOIN .
+
+    $end            reduce using rule 9 (expression -> LEFTJOIN .)
+
+
+state 11
+
+    (10) expression -> SELECT LPAREN . table RPAREN LPAREN column_list RPAREN
+    (11) table -> . ID
+
+    ID              shift and go to state 13
+
+    table                          shift and go to state 12
+
+state 12
+
+    (10) expression -> SELECT LPAREN table . RPAREN LPAREN column_list RPAREN
+
+    RPAREN          shift and go to state 14
+
+
+state 13
+
+    (11) table -> ID .
+
+    RPAREN          reduce using rule 11 (table -> ID .)
+
+
+state 14
+
+    (10) expression -> SELECT LPAREN table RPAREN . LPAREN column_list RPAREN
+
+    LPAREN          shift and go to state 15
+
+
+state 15
+
+    (10) expression -> SELECT LPAREN table RPAREN LPAREN . column_list RPAREN
+    (12) column_list -> . ID COMMA ID
+    (13) column_list -> . ID
+
+    ID              shift and go to state 17
+
+    column_list                    shift and go to state 16
+
+state 16
+
+    (10) expression -> SELECT LPAREN table RPAREN LPAREN column_list . RPAREN
+
+    RPAREN          shift and go to state 18
+
+
+state 17
+
+    (12) column_list -> ID . COMMA ID
+    (13) column_list -> ID .
+
+    COMMA           shift and go to state 19
+    RPAREN          reduce using rule 13 (column_list -> ID .)
+
+
+state 18
+
+    (10) expression -> SELECT LPAREN table RPAREN LPAREN column_list RPAREN .
+
+    $end            reduce using rule 10 (expression -> SELECT LPAREN table RPAREN LPAREN column_list RPAREN .)
+
+
+state 19
+
+    (12) column_list -> ID COMMA . ID
+
+    ID              shift and go to state 20
+
+
+state 20
+
+    (12) column_list -> ID COMMA ID .
+
+    RPAREN          reduce using rule 12 (column_list -> ID COMMA ID .)
+
